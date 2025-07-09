@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { TodoService, Task, ActivityLog } from '../../services/todo.service';
+import { TodoService, Task } from '../../services/todo.service';
+import { AuthService, User } from '../../services/auth.service';
 
 @Component({
   selector: 'app-todo',
@@ -13,8 +14,9 @@ import { TodoService, Task, ActivityLog } from '../../services/todo.service';
 export class TodoComponent implements OnInit {
   @Output() close = new EventEmitter<void>();
 
-  activeTab: 'add' | 'list' | 'history' = 'add';
-  taskFilter: 'all' | 'pending' | 'completed' = 'all';
+  activeTab: 'add' | 'list' = 'add';
+  taskFilter: 'all' | 'pending' | 'completed' | 'overdue' = 'all';
+  currentUser: User | null = null;
   
   newTask = {
     title: '',
@@ -25,24 +27,31 @@ export class TodoComponent implements OnInit {
 
   editingTask: Task | null = null;
 
-  constructor(private todoService: TodoService) {}
+  constructor(
+    private todoService: TodoService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
-    // Initialize todo service if needed
+    // Get current user
+    this.authService.currentUser$.subscribe(user => {
+      this.currentUser = user;
+    });
   }
 
   onClose() {
     this.close.emit();
   }
 
-  switchTab(tab: 'add' | 'list' | 'history') {
+  switchTab(tab: 'add' | 'list') {
     this.activeTab = tab;
   }
 
   addTask() {
-    if (this.newTask.title.trim()) {
+    if (this.newTask.title.trim() && this.currentUser) {
       this.todoService.addTask(
         this.newTask.title,
+        this.currentUser.id,
         this.newTask.description,
         this.newTask.priority,
         this.newTask.dueDate
@@ -62,14 +71,18 @@ export class TodoComponent implements OnInit {
   }
 
   getTasks(filter: string): Task[] {
-    const allTasks = this.todoService.getAllTasks();
+    if (!this.currentUser) return [];
+    
+    const userTasks = this.todoService.getUserTasks(this.currentUser.id);
     switch (filter) {
       case 'pending':
-        return allTasks.filter((task: Task) => !task.completed);
+        return userTasks.filter((task: Task) => !task.completed);
       case 'completed':
-        return allTasks.filter((task: Task) => task.completed);
+        return userTasks.filter((task: Task) => task.completed);
+      case 'overdue':
+        return this.todoService.getUserOverdueTasks(this.currentUser.id);
       default:
-        return allTasks;
+        return userTasks;
     }
   }
 
@@ -77,7 +90,7 @@ export class TodoComponent implements OnInit {
     return this.getTasks(this.taskFilter);
   }
 
-  setFilter(filter: 'all' | 'pending' | 'completed') {
+  setFilter(filter: 'all' | 'pending' | 'completed' | 'overdue') {
     this.taskFilter = filter;
   }
 
@@ -108,19 +121,31 @@ export class TodoComponent implements OnInit {
 
   // Helper methods for templates
   getAllTasks(): Task[] {
-    return this.todoService.getAllTasks();
+    if (!this.currentUser) return [];
+    return this.todoService.getUserTasks(this.currentUser.id);
   }
 
   getCompletedTasks(): Task[] {
-    return this.todoService.getAllTasks().filter((task: Task) => task.completed);
+    if (!this.currentUser) return [];
+    return this.todoService.getUserTasks(this.currentUser.id).filter((task: Task) => task.completed);
   }
 
   getPendingTasks(): Task[] {
-    return this.todoService.getAllTasks().filter((task: Task) => !task.completed);
+    if (!this.currentUser) return [];
+    return this.todoService.getUserTasks(this.currentUser.id).filter((task: Task) => !task.completed);
   }
 
-  getRecentActivity(): ActivityLog[] {
-    return this.todoService.getRecentActivity();
+  // Get task statistics for the current user
+  getTaskStats() {
+    if (!this.currentUser) return { total: 0, completed: 0, pending: 0, overdue: 0 };
+    
+    const userId = this.currentUser.id;
+    return {
+      total: this.todoService.getUserTasks(userId).length,
+      completed: this.todoService.getUserCompletedTasksCount(userId),
+      pending: this.todoService.getUserPendingTasksCount(userId),
+      overdue: this.todoService.getUserOverdueTasks(userId).length
+    };
   }
 
   formatDate(dateString: string): string {

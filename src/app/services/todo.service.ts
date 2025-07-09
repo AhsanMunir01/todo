@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 export interface Task {
   id: string;
+  userId: string;
   title: string;
   description: string;
   priority: 'low' | 'medium' | 'high';
@@ -13,6 +14,7 @@ export interface Task {
 
 export interface ActivityLog {
   id: string;
+  userId: string;
   type: 'created' | 'completed' | 'deleted' | 'updated';
   description: string;
   timestamp: string;
@@ -77,9 +79,10 @@ export class TodoService {
     return Date.now().toString(36) + Math.random().toString(36).substr(2);
   }
 
-  private addActivity(type: ActivityLog['type'], description: string, taskId: string): void {
+  private addActivity(type: ActivityLog['type'], description: string, taskId: string, userId: string): void {
     const activity: ActivityLog = {
       id: this.generateId(),
+      userId,
       type,
       description,
       timestamp: new Date().toISOString(),
@@ -96,9 +99,10 @@ export class TodoService {
     this.saveActivityLog();
   }
 
-  addTask(title: string, description: string = '', priority: 'low' | 'medium' | 'high' = 'medium', dueDate: string = ''): Task {
+  addTask(title: string, userId: string, description: string = '', priority: 'low' | 'medium' | 'high' = 'medium', dueDate: string = ''): Task {
     const task: Task = {
       id: this.generateId(),
+      userId,
       title: title.trim(),
       description: description.trim(),
       priority,
@@ -110,13 +114,18 @@ export class TodoService {
     this.tasks.unshift(task); // Add to beginning for most recent first
     this.saveTasks();
     
-    this.addActivity('created', `Created task: "${task.title}"`, task.id);
+    this.addActivity('created', `Created task: "${task.title}"`, task.id, userId);
     
     return task;
   }
 
   getAllTasks(): Task[] {
     return [...this.tasks];
+  }
+
+  // Get tasks for a specific user
+  getUserTasks(userId: string): Task[] {
+    return this.tasks.filter(task => task.userId === userId);
   }
 
   getTaskById(id: string): Task | undefined {
@@ -129,7 +138,7 @@ export class TodoService {
       this.tasks[index] = { ...updatedTask };
       this.saveTasks();
       
-      this.addActivity('updated', `Updated task: "${updatedTask.title}"`, updatedTask.id);
+      this.addActivity('updated', `Updated task: "${updatedTask.title}"`, updatedTask.id, updatedTask.userId);
       return true;
     }
     return false;
@@ -142,10 +151,10 @@ export class TodoService {
       
       if (task.completed) {
         task.completedAt = new Date().toISOString();
-        this.addActivity('completed', `Completed task: "${task.title}"`, task.id);
+        this.addActivity('completed', `Completed task: "${task.title}"`, task.id, task.userId);
       } else {
         delete task.completedAt;
-        this.addActivity('updated', `Reopened task: "${task.title}"`, task.id);
+        this.addActivity('updated', `Reopened task: "${task.title}"`, task.id, task.userId);
       }
       
       this.saveTasks();
@@ -161,7 +170,7 @@ export class TodoService {
       this.tasks.splice(taskIndex, 1);
       this.saveTasks();
       
-      this.addActivity('deleted', `Deleted task: "${deletedTask.title}"`, deletedTask.id);
+      this.addActivity('deleted', `Deleted task: "${deletedTask.title}"`, deletedTask.id, deletedTask.userId);
       return true;
     }
     return false;
@@ -171,21 +180,52 @@ export class TodoService {
     return this.activityLog.slice(0, limit);
   }
 
+  // Get activity for a specific user
+  getUserActivity(userId: string, limit: number = 10): ActivityLog[] {
+    return this.activityLog.filter(activity => activity.userId === userId).slice(0, limit);
+  }
+
   getCompletedTasksCount(): number {
     return this.tasks.filter(task => task.completed).length;
+  }
+
+  // Get completed tasks count for a specific user
+  getUserCompletedTasksCount(userId: string): number {
+    return this.tasks.filter(task => task.userId === userId && task.completed).length;
   }
 
   getPendingTasksCount(): number {
     return this.tasks.filter(task => !task.completed).length;
   }
 
+  // Get pending tasks count for a specific user
+  getUserPendingTasksCount(userId: string): number {
+    return this.tasks.filter(task => task.userId === userId && !task.completed).length;
+  }
+
   getTasksByPriority(priority: 'low' | 'medium' | 'high'): Task[] {
     return this.tasks.filter(task => task.priority === priority);
+  }
+
+  // Get tasks by priority for a specific user
+  getUserTasksByPriority(userId: string, priority: 'low' | 'medium' | 'high'): Task[] {
+    return this.tasks.filter(task => task.userId === userId && task.priority === priority);
   }
 
   getOverdueTasks(): Task[] {
     const today = new Date().toISOString().split('T')[0];
     return this.tasks.filter(task => 
+      !task.completed && 
+      task.dueDate && 
+      task.dueDate < today
+    );
+  }
+
+  // Get overdue tasks for a specific user
+  getUserOverdueTasks(userId: string): Task[] {
+    const today = new Date().toISOString().split('T')[0];
+    return this.tasks.filter(task => 
+      task.userId === userId &&
       !task.completed && 
       task.dueDate && 
       task.dueDate < today
@@ -205,7 +245,20 @@ export class TodoService {
     this.saveTasks();
     
     if (completedTasks.length > 0) {
-      this.addActivity('deleted', `Cleared ${completedTasks.length} completed tasks`, '');
+      // Use the first completed task's userId for the activity log
+      const userId = completedTasks[0]?.userId || 'unknown';
+      this.addActivity('deleted', `Cleared ${completedTasks.length} completed tasks`, '', userId);
+    }
+  }
+
+  // Clear completed tasks for a specific user
+  clearUserCompletedTasks(userId: string): void {
+    const userCompletedTasks = this.tasks.filter(task => task.userId === userId && task.completed);
+    this.tasks = this.tasks.filter(task => !(task.userId === userId && task.completed));
+    this.saveTasks();
+    
+    if (userCompletedTasks.length > 0) {
+      this.addActivity('deleted', `Cleared ${userCompletedTasks.length} completed tasks`, '', userId);
     }
   }
 }
