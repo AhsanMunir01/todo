@@ -1,0 +1,101 @@
+<div id="body" class = "app-body ">
+<header>
+<nav>
+  <h1>To Do App</h1>
+  <div class="nav-links">
+    <a href="#" (click)="showHome(); $event.preventDefault()" [class.active]="activeSection === 'home'">Home</a>
+    <a href="#" (click)="showAbout(); $event.preventDefault()" [class.active]="activeSection === 'about'">About</a>
+    <a href="#" (click)="showContact(); $event.preventDefault()" [class.active]="activeSection === 'contact'">Contact</a>
+    
+    <!-- Unauthenticated user links -->
+    <div *ngIf="!currentUser" class="auth-links">
+      <a href="#" (click)="openLoginModal(); $event.preventDefault()">Sign In</a>
+      <a href="#" (click)="openSignupModal(); $event.preventDefault()" class="signup-btn">Sign Up</a>
+    </div>
+    
+    <!-- Authenticated user links -->
+    <div *ngIf="currentUser" class="user-menu">
+      <span class="user-greeting">Hello, {{currentUser.firstName}}!</span>
+      <a href="#" (click)="openTodoMosdal(); $event.preventDefault()" class="todo-btn">Todo</a>
+      <a href="#" (click)="openProfileModal(); $event.preventDefault()" class="profile-btn">Profile</a>
+      <a href="#" (click)="logout(); $event.preventDefault()" class="logout-btn">Logout</a>
+    </div>
+  </div>
+  
+</nav>
+</header>
+
+<!-- Home Section -->
+<div id="home" class="content-section" [class.active-section]="activeSection === 'home'">
+  <h2>Welcome to To Do App</h2>
+  <p>Organize your tasks efficiently and stay productive!</p>
+  <div class="task-summary">
+    <h3>Quick Overview</h3>
+    <p>Start managing your daily tasks with our simple and intuitive interface.</p>
+  </div>
+</div>
+
+<!-- About Section -->
+<div id="about" class="content-section" [class.active-section]="activeSection === 'about'">
+  <h2>About Our To Do App</h2>
+  <p>This application helps you manage your daily tasks and boost your productivity.</p>
+  <div class="features">
+    <h3>Features:</h3>
+    <ul>
+      <li>Add and manage tasks</li>
+      <li>Mark tasks as complete</li>
+      <li>Organize with categories</li>
+      <li>Simple and clean interface</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Contact Section -->
+<div id="contact" class="content-section" [class.active-section]="activeSection === 'contact'">
+  <h2>Contact Us</h2>
+  <p>Get in touch with our team for any questions or feedback.</p>
+  <div class="contact-info">
+    <div class="contact-item">
+      <h3>Email</h3>
+      <p>support&#64;todoapp.com</p>
+    </div>
+    <div class="contact-item">
+      <h3>Phone</h3>
+      <p>+924200000000</p>
+    </div>
+    <div class="contact-item">
+      <h3>Address</h3>
+      <p>123 Task Street<br>Productivity City, PC 12345</p>
+    </div>
+  </div>
+</div>
+
+</div>
+<router-outlet></router-outlet>
+
+<!-- Login Modal -->
+<app-login 
+  *ngIf="showLogin" 
+  (close)="closeModals()" 
+  (switchToSignup)="switchToSignupFromLogin()"
+  (loginSuccess)="onLoginSuccess()">
+</app-login>
+
+<!-- Signup Modal -->
+<app-signup 
+  *ngIf="showSignup" 
+  (close)="closeModals()" 
+  (switchToLogin)="switchToLoginFromSignup()">
+</app-signup>
+
+<!-- Profile Modal -->
+<app-profile 
+  *ngIf="showProfile && currentUser"
+  (close)="closeModals()">
+</app-profile>
+
+<!-- Todo Modal -->
+<app-todo 
+  *ngIf="showTodo && currentUser"
+  (close)="closeModals()">
+</app-todo>

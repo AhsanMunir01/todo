@@ -1,0 +1,164 @@
+<div class="modal-overlay" (click)="close.emit()">
+  <div class="profile-container" (click)="$event.stopPropagation()">
+    <div class="profile-header">
+      <h2>User Profile</h2>
+      <button class="close-btn" (click)="close.emit()">&times;</button>
+    </div>
+
+  <div class="profile-content" *ngIf="user">
+    <!-- User Info Display -->
+    <div class="user-info">
+      <div class="avatar">
+        <span>{{ user.firstName[0] }}{{ user.lastName[0] }}</span>
+      </div>
+      <div class="user-details">
+        <h3>{{ user.firstName }} {{ user.lastName }}</h3>
+        <p>{{ user.email }}</p>
+        <small>Member since: {{ user.createdAt | date:'mediumDate' }}</small>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button 
+        class="tab-btn" 
+        [class.active]="activeTab === 'info'"
+        (click)="setActiveTab('info')">
+        Profile Information
+      </button>
+      <button 
+        class="tab-btn" 
+        [class.active]="activeTab === 'password'"
+        (click)="setActiveTab('password')">
+        Change Password
+      </button>
+    </div>
+
+    <!-- Message Display -->
+    <div class="message" *ngIf="message" [class.success]="messageType === 'success'" [class.error]="messageType === 'error'">
+      {{ message }}
+    </div>
+
+    <!-- Profile Information Tab -->
+    <div class="tab-content" *ngIf="activeTab === 'info'">
+      <form (ngSubmit)="updateProfile()" #profileFormRef="ngForm">
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input 
+            type="text" 
+            id="firstName" 
+            name="firstName"
+            [(ngModel)]="profileForm.firstName" 
+            required
+            #firstName="ngModel">
+          <div class="error" *ngIf="firstName.invalid && firstName.touched">
+            First name is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input 
+            type="text" 
+            id="lastName" 
+            name="lastName"
+            [(ngModel)]="profileForm.lastName" 
+            required
+            #lastName="ngModel">
+          <div class="error" *ngIf="lastName.invalid && lastName.touched">
+            Last name is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email"
+            [(ngModel)]="profileForm.email" 
+            required
+            email
+            #email="ngModel">
+          <div class="error" *ngIf="email.invalid && email.touched">
+            <span *ngIf="email.errors?.['required']">Email is required</span>
+            <span *ngIf="email.errors?.['email']">Please enter a valid email address</span>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary" [disabled]="profileFormRef.invalid">
+          Update Profile
+        </button>
+      </form>
+    </div>
+
+    <!-- Change Password Tab -->
+    <div class="tab-content" *ngIf="activeTab === 'password'">
+      <form (ngSubmit)="changePassword()" #passwordFormRef="ngForm">
+        <div class="form-group">
+          <label for="currentPassword">Current Password</label>
+          <input 
+            type="password" 
+            id="currentPassword" 
+            name="currentPassword"
+            [(ngModel)]="passwordForm.currentPassword" 
+            required
+            #currentPassword="ngModel">
+          <div class="error" *ngIf="currentPassword.invalid && currentPassword.touched">
+            Current password is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="newPassword">New Password</label>
+          <input 
+            type="password" 
+            id="newPassword" 
+            name="newPassword"
+            [(ngModel)]="passwordForm.newPassword" 
+            required
+            minlength="8"
+            #newPassword="ngModel">
+          <div class="error" *ngIf="newPassword.invalid && newPassword.touched">
+            <span *ngIf="newPassword.errors?.['required']">New password is required</span>
+            <span *ngIf="newPassword.errors?.['minlength']">Password must be at least 8 characters long</span>
+          </div>
+          <div class="password-requirements">
+            <small>Password must contain:</small>
+            <ul>
+              <li>At least 8 characters</li>
+              <li>One lowercase letter</li>
+              <li>One uppercase letter</li>
+              <li>One number</li>
+              <li>One special character ($!%*?&)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm New Password</label>
+          <input 
+            type="password" 
+            id="confirmPassword" 
+            name="confirmPassword"
+            [(ngModel)]="passwordForm.confirmPassword" 
+            required
+            #confirmPassword="ngModel">
+          <div class="error" *ngIf="confirmPassword.invalid && confirmPassword.touched">
+            Confirm password is required
+          </div>
+          <div class="error" *ngIf="passwordForm.newPassword !== passwordForm.confirmPassword && confirmPassword.touched">
+            Passwords do not match
+          </div>
+        </div>
+
+        <button 
+          type="submit" 
+          class="btn-primary" 
+          [disabled]="passwordFormRef.invalid || passwordForm.newPassword !== passwordForm.confirmPassword">
+          Change Password
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

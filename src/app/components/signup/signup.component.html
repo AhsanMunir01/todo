@@ -1,0 +1,101 @@
+<div class="modal-overlay" (click)="onClose()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>Sign Up</h2>
+      <button class="close-btn" (click)="onClose()">&times;</button>
+    </div>
+    
+    <form (ngSubmit)="onSubmit()" class="signup-form">
+      <!-- Error Message -->
+      <div class="error-message" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
+      <!-- Success Message -->
+      <div class="success-message" *ngIf="successMessage">
+        {{ successMessage }}
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input 
+            type="text" 
+            id="firstName" 
+            [(ngModel)]="signupData.firstName" 
+            name="firstName"
+            placeholder="Enter your first name"
+            required
+            [disabled]="isLoading"
+          >
+        </div>
+        
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input 
+            type="text" 
+            id="lastName" 
+            [(ngModel)]="signupData.lastName" 
+            name="lastName"
+            placeholder="Enter your last name"
+            required
+            [disabled]="isLoading"
+          >
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input 
+          type="email" 
+          id="email" 
+          [(ngModel)]="signupData.email" 
+          name="email"
+          placeholder="Enter your email"
+          required
+          [disabled]="isLoading"
+        >
+      </div>
+      
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input 
+          type="password" 
+          id="password" 
+          [(ngModel)]="signupData.password" 
+          name="password"
+          placeholder="Enter your password (min 8 characters)"
+          required
+          [disabled]="isLoading"
+        >
+        <div class="password-requirements">
+          <small>Password must contain: 8+ chars, lowercase, uppercase, number, special char</small>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input 
+          type="password" 
+          id="confirmPassword" 
+          [(ngModel)]="signupData.confirmPassword" 
+          name="confirmPassword"
+          placeholder="Confirm your password"
+          required
+          [disabled]="isLoading"
+        >
+      </div>
+      
+      <button type="submit" class="signup-btn" [disabled]="isLoading">
+        <span *ngIf="isLoading">Creating Account...</span>
+        <span *ngIf="!isLoading">Create Account</span>
+      </button>
+      
+      <div class="form-footer">
+        <p>Already have an account? 
+          <a href="#" (click)="onSwitchToLogin(); $event.preventDefault()">Sign in here</a>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>
