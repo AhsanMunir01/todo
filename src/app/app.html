@@ -16,7 +16,7 @@
     <!-- Authenticated user links -->
     <div *ngIf="currentUser" class="user-menu">
       <span class="user-greeting">Hello, {{currentUser.firstName}}!</span>
-      <a href="#" (click)="openTodoMosdal(); $event.preventDefault()" class="todo-btn">Todo</a>
+      <a href="#" (click)="openTodoModal(); $event.preventDefault()" class="todo-btn">Todo</a>
       <a href="#" (click)="openProfileModal(); $event.preventDefault()" class="profile-btn">Profile</a>
       <a href="#" (click)="logout(); $event.preventDefault()" class="logout-btn">Logout</a>
     </div>

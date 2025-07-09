@@ -97,6 +97,7 @@ export class App implements OnInit, OnDestroy {
     this.showLogin = false;
     this.showSignup = false;
     this.showProfile = false;
+    this.showTodo = false;
   }
 
   onLoginSuccess() {
