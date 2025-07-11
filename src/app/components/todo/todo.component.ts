@@ -22,7 +22,8 @@ export class TodoComponent implements OnInit {
     title: '',
     description: '',
     priority: 'medium' as 'low' | 'medium' | 'high',
-    dueDate: ''
+    dueDate: '',
+    dueTime: ''
   };
 
   editingTask: Task | null = null;
@@ -54,7 +55,8 @@ export class TodoComponent implements OnInit {
         this.currentUser.id,
         this.newTask.description,
         this.newTask.priority,
-        this.newTask.dueDate
+        this.newTask.dueDate,
+        this.newTask.dueTime
       );
       
       // Reset form
@@ -62,7 +64,8 @@ export class TodoComponent implements OnInit {
         title: '',
         description: '',
         priority: 'medium',
-        dueDate: ''
+        dueDate: '',
+        dueTime: ''
       };
 
       // Switch to list tab to show the new task
@@ -146,6 +149,10 @@ export class TodoComponent implements OnInit {
       pending: this.todoService.getUserPendingTasksCount(userId),
       overdue: this.todoService.getUserOverdueTasks(userId).length
     };
+  }
+
+  formatDueDateTime(task: Task): string {
+    return this.todoService.formatDueDateTime(task);
   }
 
   formatDate(dateString: string): string {

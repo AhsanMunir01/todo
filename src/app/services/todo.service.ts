@@ -7,6 +7,7 @@ export interface Task {
   description: string;
   priority: 'low' | 'medium' | 'high';
   dueDate: string;
+  dueTime?: string;
   completed: boolean;
   createdAt: string;
   completedAt?: string;
@@ -99,7 +100,7 @@ export class TodoService {
     this.saveActivityLog();
   }
 
-  addTask(title: string, userId: string, description: string = '', priority: 'low' | 'medium' | 'high' = 'medium', dueDate: string = ''): Task {
+  addTask(title: string, userId: string, description: string = '', priority: 'low' | 'medium' | 'high' = 'medium', dueDate: string = '', dueTime: string = ''): Task {
     const task: Task = {
       id: this.generateId(),
       userId,
@@ -107,6 +108,7 @@ export class TodoService {
       description: description.trim(),
       priority,
       dueDate,
+      dueTime: dueTime.trim() || undefined,
       completed: false,
       createdAt: new Date().toISOString()
     };
@@ -213,23 +215,129 @@ export class TodoService {
   }
 
   getOverdueTasks(): Task[] {
-    const today = new Date().toISOString().split('T')[0];
-    return this.tasks.filter(task => 
-      !task.completed && 
-      task.dueDate && 
-      task.dueDate < today
-    );
+    const now = new Date();
+    const today = now.toISOString().split('T')[0];
+    const currentTime = now.toTimeString().slice(0, 5); // HH:MM format
+    
+    return this.tasks.filter(task => {
+      if (task.completed || !task.dueDate) {
+        return false;
+      }
+      
+      // If task has both date and time
+      if (task.dueTime) {
+        const taskDateTime = new Date(`${task.dueDate}T${task.dueTime}`);
+        return taskDateTime < now;
+      }
+      
+      // If task has only date, consider it overdue if date has passed
+      return task.dueDate < today;
+    });
   }
 
   // Get overdue tasks for a specific user
   getUserOverdueTasks(userId: string): Task[] {
+    const now = new Date();
+    const today = now.toISOString().split('T')[0];
+    const currentTime = now.toTimeString().slice(0, 5); // HH:MM format
+    
+    return this.tasks.filter(task => {
+      if (task.userId !== userId || task.completed || !task.dueDate) {
+        return false;
+      }
+      
+      // If task has both date and time
+      if (task.dueTime) {
+        const taskDateTime = new Date(`${task.dueDate}T${task.dueTime}`);
+        return taskDateTime < now;
+      }
+      
+      // If task has only date, consider it overdue if date has passed
+      return task.dueDate < today;
+    });
+  }
+
+  // Get tasks due today
+  getTasksDueToday(): Task[] {
+    const today = new Date().toISOString().split('T')[0];
+    return this.tasks.filter(task => 
+      !task.completed && 
+      task.dueDate === today
+    );
+  }
+
+  // Get tasks due today for a specific user
+  getUserTasksDueToday(userId: string): Task[] {
     const today = new Date().toISOString().split('T')[0];
     return this.tasks.filter(task => 
       task.userId === userId &&
       !task.completed && 
-      task.dueDate && 
-      task.dueDate < today
+      task.dueDate === today
     );
+  }
+
+  // Check if a task is due within the next hour
+  isTaskDueSoon(task: Task, hoursThreshold: number = 1): boolean {
+    if (task.completed || !task.dueDate) {
+      return false;
+    }
+
+    const now = new Date();
+    let dueDateTime: Date;
+
+    if (task.dueTime) {
+      dueDateTime = new Date(`${task.dueDate}T${task.dueTime}`);
+    } else {
+      // If no time specified, assume end of day (23:59)
+      dueDateTime = new Date(`${task.dueDate}T23:59`);
+    }
+
+    const timeDifference = dueDateTime.getTime() - now.getTime();
+    const hoursUntilDue = timeDifference / (1000 * 60 * 60);
+
+    return hoursUntilDue <= hoursThreshold && hoursUntilDue > 0;
+  }
+
+  // Get tasks due within the next specified hours
+  getTasksDueSoon(hoursThreshold: number = 1): Task[] {
+    return this.tasks.filter(task => this.isTaskDueSoon(task, hoursThreshold));
+  }
+
+  // Get tasks due soon for a specific user
+  getUserTasksDueSoon(userId: string, hoursThreshold: number = 1): Task[] {
+    return this.tasks.filter(task => 
+      task.userId === userId && this.isTaskDueSoon(task, hoursThreshold)
+    );
+  }
+
+  // Utility method to format due date and time for display
+  formatDueDateTime(task: Task): string {
+    if (!task.dueDate) {
+      return '';
+    }
+
+    const dueDate = new Date(task.dueDate);
+    const dateString = dueDate.toLocaleDateString();
+
+    if (task.dueTime) {
+      return `${dateString} at ${task.dueTime}`;
+    }
+
+    return dateString;
+  }
+
+  // Get the full due date-time as a Date object
+  getDueDateTimeAsDate(task: Task): Date | null {
+    if (!task.dueDate) {
+      return null;
+    }
+
+    if (task.dueTime) {
+      return new Date(`${task.dueDate}T${task.dueTime}`);
+    }
+
+    // If no time specified, return end of day
+    return new Date(`${task.dueDate}T23:59:59`);
   }
 
   clearAllTasks(): void {
