@@ -6,6 +6,10 @@ A modern, feature-rich Todo application built with Angular 20 that helps you org
 
 **GitHub**: [AhsanMunir01](https://github.com/AhsanMunir01)
 
+## 🌐 Live Demo
+
+The application is deployed on GitHub Pages: [https://ahsanmunir01.github.io/todo/](https://ahsanmunir01.github.io/todo/)
+
 ## 🚀 Features
 
 ### Core Functionality
@@ -218,6 +222,44 @@ Planned features for future releases:
 - Collaborative task sharing
 - Task deadline reminders
 - Advanced filtering options
+
+## 🚀 Deployment
+
+### GitHub Pages Deployment
+
+This application is automatically deployed to GitHub Pages using GitHub Actions. The deployment process is triggered on every push to the main branch.
+
+#### Manual Deployment
+
+To deploy manually, run:
+
+```bash
+npm run deploy
+```
+
+This will:
+1. Build the application for production with the correct base href
+2. Deploy the built files to the gh-pages branch
+
+#### Deployment Configuration
+
+- **Base href**: `/todo/` (configured for GitHub Pages)
+- **Build output**: `dist/task/`
+- **GitHub Pages branch**: `gh-pages`
+- **Auto-deployment**: Enabled via GitHub Actions
+
+### Local Development
+
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Start development server: `npm start`
+4. Navigate to `http://localhost:4200/`
+
+### Build for Production
+
+```bash
+npm run build:prod
+```
 
 ## 🛠️ Angular CLI Information
 
