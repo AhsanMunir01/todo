@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "build:prod": "ng build --configuration production --base-href /todo/",
-    "deploy": "ng build --configuration production --base-href /todo/ && npx angular-cli-ghpages --dir=dist/task",
+    "deploy": "ng build --configuration production --base-href /todo/ && npx angular-cli-ghpages --dir=dist/task/browser",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
