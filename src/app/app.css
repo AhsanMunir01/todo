@@ -181,16 +181,12 @@ nav h1 {
   background: #2a2a2a;
   border-radius: 15px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  
-  /* Animation properties */
-  animation: slideInFade 0.6s ease-in-out;
   opacity: 1;
   transform: translateY(0);
 }
 
 /* Keyframe animations for smooth transitions */
-@keyframes slideInFade {
+/* @keyframes slideInFade {
   0% {
     opacity: 0;
     transform: translateY(30px) scale(0.95);
@@ -203,9 +199,9 @@ nav h1 {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
-}
+} */
 
-@keyframes slideInFromLeft {
+/* @keyframes slideInFromLeft {
   0% {
     opacity: 0;
     transform: translateX(-50px);
@@ -214,9 +210,9 @@ nav h1 {
     opacity: 1;
     transform: translateX(0);
   }
-}
+} */
 
-@keyframes slideInFromRight {
+/* @keyframes slideInFromRight {
   0% {
     opacity: 0;
     transform: translateX(50px);
@@ -225,7 +221,7 @@ nav h1 {
     opacity: 1;
     transform: translateX(0);
   }
-}
+} */
 
 @keyframes slideInFromTop {
   0% {
@@ -267,19 +263,16 @@ nav h1 {
 #home {
   background: linear-gradient(135deg, #635364 0%, #554e4f 100%);
   color: white;
-  animation: slideInFromLeft 0.7s ease-out;
 }
 
 #home h2 {
   color: white;
   -webkit-text-fill-color: white;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  animation: slideInFromTop 0.8s ease-out 0.2s both;
 }
 
 #home p {
   color: rgba(255, 255, 255, 0.9);
-  animation: slideInFade 0.9s ease-out 0.3s both;
 }
 
 .task-summary {
@@ -288,22 +281,21 @@ nav h1 {
   border-radius: 12px;
   margin-top: 30px;
   backdrop-filter: blur(10px);
-  animation: slideInFromTop 1s ease-out 0.4s both;
 }
 
 .task-summary:hover {
-  animation: bounceSubtle 0.6s ease-in-out;
+  /* Removed animation */
 }
 
 /* Subtle bounce animation */
-@keyframes bounceSubtle {
+/* @keyframes bounceSubtle {
   0%, 100% {
     transform: translateY(0);
   }
   50% {
     transform: translateY(-10px);
   }
-}
+} */
 
 .task-summary h3 {
   color: white;
@@ -316,19 +308,16 @@ nav h1 {
 #about {
   background: linear-gradient(135deg, #547694 0%, #465c5e 100%);
   color: white;
-  animation: slideInFade 0.7s ease-out;
 }
 
 #about h2 {
   color: white;
   -webkit-text-fill-color: white;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  animation: slideInFromTop 0.8s ease-out 0.2s both;
 }
 
 #about p {
   color: rgba(255, 255, 255, 0.9);
-  animation: slideInFromLeft 0.9s ease-out 0.3s both;
 }
 
 .features {
@@ -337,7 +326,6 @@ nav h1 {
   border-radius: 12px;
   margin-top: 30px;
   backdrop-filter: blur(10px);
-  animation: slideInFromRight 1s ease-out 0.4s both;
 }
 
 .features h3 {
@@ -358,14 +346,8 @@ nav h1 {
   padding: 12px 20px;
   border-radius: 8px;
   border-left: 4px solid rgb(223, 219, 219);
-  transition: all 0.3s ease;
-  animation: slideInFromLeft 0.6s ease-out both;
+  transition: all 0.1s ease;
 }
-
-.features li:nth-child(1) { animation-delay: 0.5s; }
-.features li:nth-child(2) { animation-delay: 0.6s; }
-.features li:nth-child(3) { animation-delay: 0.7s; }
-.features li:nth-child(4) { animation-delay: 0.8s; }
 
 .features li:hover {
   background: rgba(255, 255, 255, 0.2);
@@ -376,19 +358,16 @@ nav h1 {
 #contact {
   background: linear-gradient(135deg, #5e3b45 0%, #6e6740 100%);
   color: white;
-  animation: slideInFromRight 0.7s ease-out;
 }
 
 #contact h2 {
   color: white;
   -webkit-text-fill-color: white;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  animation: slideInFromTop 0.8s ease-out 0.2s both;
 }
 
 #contact p {
   color: rgba(255, 255, 255, 0.9);
-  animation: slideInFade 0.9s ease-out 0.3s both;
 }
 
 .contact-info {
@@ -396,7 +375,6 @@ nav h1 {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 25px;
   margin-top: 30px;
-  animation: slideInFromTop 1s ease-out 0.4s both;
 }
 
 .contact-item {
@@ -406,12 +384,7 @@ nav h1 {
   text-align: center;
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
-  animation: slideInFromTop 0.7s ease-out both;
 }
-
-.contact-item:nth-child(1) { animation-delay: 0.5s; }
-.contact-item:nth-child(2) { animation-delay: 0.6s; }
-.contact-item:nth-child(3) { animation-delay: 0.7s; }
 
 .contact-item:hover {
   background: rgba(255, 255, 255, 0.3);
@@ -461,9 +434,8 @@ html {
 
 /* Active section highlighting */
 .content-section {
-  transition: all 0.6s ease-in-out;
-  transform: scale(0.98);
-  opacity: 0.8;
+  transform: scale(1);
+  opacity: 1;
 }
 
 .content-section.active-section {
@@ -473,10 +445,7 @@ html {
   border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Scroll-triggered animations */
-.content-section {
-  animation: fadeInUp 0.8s ease-out;
-}
+/* Scroll-triggered animations - removed */
 
 @keyframes fadeInUp {
   from {
@@ -489,10 +458,7 @@ html {
   }
 }
 
-/* Active section pulse animation */
-.content-section.active-section {
-  animation: pulseIn 0.6s ease-out;
-}
+/* Active section pulse animation - removed */
 
 @keyframes pulseIn {
   0% {
@@ -515,55 +481,7 @@ html {
   margin-bottom: 60px;
 }
 
-/* Enhanced section-specific animations */
-#home.active-section h2 {
-  animation: slideInLeft 0.8s ease-out 0.2s both;
-}
-
-#home.active-section p {
-  animation: slideInRight 0.8s ease-out 0.4s both;
-}
-
-#home.active-section .task-summary {
-  animation: bounceIn 0.8s ease-out 0.6s both;
-}
-
-#about.active-section h2 {
-  animation: slideInDown 0.8s ease-out 0.2s both;
-}
-
-#about.active-section > p {
-  animation: fadeIn 0.8s ease-out 0.4s both;
-}
-
-#about.active-section .features {
-  animation: slideInUp 0.8s ease-out 0.6s both;
-}
-
-#about.active-section .features li {
-  animation: slideInLeft 0.6s ease-out both;
-}
-
-#about.active-section .features li:nth-child(1) { animation-delay: 0.8s; }
-#about.active-section .features li:nth-child(2) { animation-delay: 1.0s; }
-#about.active-section .features li:nth-child(3) { animation-delay: 1.2s; }
-#about.active-section .features li:nth-child(4) { animation-delay: 1.4s; }
-
-#contact.active-section h2 {
-  animation: zoomIn 0.8s ease-out 0.2s both;
-}
-
-#contact.active-section > p {
-  animation: fadeIn 0.8s ease-out 0.4s both;
-}
-
-#contact.active-section .contact-item {
-  animation: slideInUp 0.6s ease-out both;
-}
-
-#contact.active-section .contact-item:nth-child(1) { animation-delay: 0.6s; }
-#contact.active-section .contact-item:nth-child(2) { animation-delay: 0.8s; }
-#contact.active-section .contact-item:nth-child(3) { animation-delay: 1.0s; }
+/* Enhanced section-specific animations - removed */
 
 /* Keyframe definitions */
 @keyframes slideInLeft {
