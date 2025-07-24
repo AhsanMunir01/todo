@@ -369,4 +369,16 @@ export class TodoService {
       this.addActivity('deleted', `Cleared ${userCompletedTasks.length} completed tasks`, '', userId);
     }
   }
+
+  // Replace all tasks for a specific user with new tasks (for API sync)
+  replaceUserTasks(userId: string, newTasks: Task[]): void {
+    // Remove existing tasks for this user
+    this.tasks = this.tasks.filter(task => task.userId !== userId);
+    
+    // Add new tasks
+    this.tasks.unshift(...newTasks);
+    
+    // Save to localStorage
+    this.saveTasks();
+  }
 }

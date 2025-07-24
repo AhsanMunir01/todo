@@ -5,12 +5,14 @@ import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { TodoComponent } from './components/todo/todo.component';
+import { NotificationComponent } from './components/notification/notification.component';
 import { AuthService, User } from './services/auth.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, LoginComponent, SignupComponent, ProfileComponent, TodoComponent],
+  imports: [RouterOutlet, CommonModule, LoginComponent, SignupComponent, ProfileComponent, TodoComponent, NotificationComponent, HttpClientModule,],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })

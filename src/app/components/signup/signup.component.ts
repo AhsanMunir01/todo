@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-signup',
@@ -22,38 +23,68 @@ export class SignupComponent {
     confirmPassword: ''
   };
 
+  //https://localhost:7133/api/Auth/register
+
   errorMessage = '';
   successMessage = '';
   isLoading = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private http: HttpClient
+  ) {}
 
   onSubmit() {
     this.errorMessage = '';
     this.successMessage = '';
     this.isLoading = true;
 
-    const result = this.authService.signup(this.signupData);
+    // First validate the form using the auth service
+    const validationResult = this.authService.validateSignupData(this.signupData);
     
-    this.isLoading = false;
-
-    if (result.success) {
-      this.successMessage = result.message;
-      // Reset form
-      this.signupData = {
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-        confirmPassword: ''
-      };
-      // Close modal after short delay to show success message
-      setTimeout(() => {
-        this.onClose();
-      }, 2000);
-    } else {
-      this.errorMessage = result.message;
+    if (!validationResult.success) {
+      this.errorMessage = validationResult.message;
+      this.isLoading = false;
+      return;
     }
+
+    // Prepare data for API call - include confirmPassword as required by backend
+    const apiData = {
+      firstName: this.signupData.firstName.trim(),
+      lastName: this.signupData.lastName.trim(),
+      email: this.signupData.email.toLowerCase().trim(),
+      password: this.signupData.password,
+      confirmPassword: this.signupData.confirmPassword
+    };
+
+    // Make API call
+    this.http.post('https://localhost:7133/api/Auth/register', apiData)
+      .subscribe({
+        next: (response: any) => {
+          console.log('POST response:', response);
+          this.isLoading = false;
+          this.successMessage = 'Account created successfully! Please login with your credentials.';
+          
+          // Reset form
+          this.signupData = {
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+            confirmPassword: ''
+          };
+          
+          // Redirect to login page after short delay to show success message
+          setTimeout(() => {
+            this.onSwitchToLogin();
+          }, 2000);
+        },
+        error: (error) => {
+          console.error('Registration error:', error);
+          this.isLoading = false;
+          this.errorMessage = error.error?.message || 'Registration failed. Please try again.';
+        }
+      });
   }
 
   onClose() {

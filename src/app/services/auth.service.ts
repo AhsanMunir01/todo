@@ -8,6 +8,7 @@ export interface User {
   email: string;
   password: string;
   createdAt: Date;
+  lastLoginAt?: Date;
 }
 
 @Injectable({
@@ -51,6 +52,29 @@ export class AuthService {
     return { valid: true, message: '' };
   }
 
+  // Validate signup data (for client-side validation before API call)
+  validateSignupData(userData: { firstName: string; lastName: string; email: string; password: string; confirmPassword: string }): { success: boolean; message: string } {
+    // Validation
+    if (!userData.firstName.trim() || !userData.lastName.trim() || !userData.email.trim() || !userData.password || !userData.confirmPassword) {
+      return { success: false, message: 'Please fill in all fields' };
+    }
+
+    if (!this.isValidEmail(userData.email)) {
+      return { success: false, message: 'Please enter a valid email address' };
+    }
+
+    if (userData.password !== userData.confirmPassword) {
+      return { success: false, message: 'Passwords do not match' };
+    }
+
+    const passwordValidation = this.isValidPassword(userData.password);
+    if (!passwordValidation.valid) {
+      return { success: false, message: passwordValidation.message };
+    }
+
+    return { success: true, message: '' };
+  }
+
   // Sign up new user
   signup(userData: { firstName: string; lastName: string; email: string; password: string; confirmPassword: string }): { success: boolean; message: string } {
     // Validation
@@ -84,7 +108,8 @@ export class AuthService {
       lastName: userData.lastName.trim(),
       email: userData.email.toLowerCase().trim(),
       password: userData.password, // In a real app, this would be hashed
-      createdAt: new Date()
+      createdAt: new Date(),
+      lastLoginAt: new Date() // Set signup time as initial login time
     };
 
     // Save user to localStorage
@@ -108,6 +133,15 @@ export class AuthService {
     const user = users.find(u => u.email.toLowerCase() === email.toLowerCase().trim() && u.password === password);
 
     if (user) {
+      // Update lastLoginAt timestamp
+      const users = this.getUsers();
+      const userIndex = users.findIndex(u => u.id === user.id);
+      if (userIndex !== -1) {
+        users[userIndex].lastLoginAt = new Date();
+        localStorage.setItem('users', JSON.stringify(users));
+        user.lastLoginAt = new Date(); // Update the current user object
+      }
+      
       // Remove password from the stored current user for security
       const userWithoutPassword = { ...user };
       delete (userWithoutPassword as any).password;
@@ -129,6 +163,12 @@ export class AuthService {
   // Get current user
   getCurrentUser(): User | null {
     return this.currentUserSubject.value;
+  }
+
+  // Set current user (for API login integration)
+  setCurrentUser(user: User): void {
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    this.currentUserSubject.next(user);
   }
 
   // Check if user is logged in
