@@ -1,0 +1,265 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\intern\\practice\\dotnet\\backend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A8732BC9-E671-4C28-B73C-A8E3119403EF}|backend\\backend.csproj|d:\\intern\\practice\\dotnet\\backend\\backend\\models\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8732BC9-E671-4C28-B73C-A8E3119403EF}|backend\\backend.csproj|solutionrelative:backend\\models\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8732BC9-E671-4C28-B73C-A8E3119403EF}|backend\\backend.csproj|d:\\intern\\practice\\dotnet\\backend\\backend\\models\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8732BC9-E671-4C28-B73C-A8E3119403EF}|backend\\backend.csproj|solutionrelative:backend\\models\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8732BC9-E671-4C28-B73C-A8E3119403EF}|backend\\backend.csproj|d:\\intern\\practice\\dotnet\\backend\\backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8732BC9-E671-4C28-B73C-A8E3119403EF}|backend\\backend.csproj|solutionrelative:backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8732BC9-E671-4C28-B73C-A8E3119403EF}|backend\\backend.csproj|d:\\intern\\practice\\dotnet\\backend\\backend\\models\\entities\\todo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8732BC9-E671-4C28-B73C-A8E3119403EF}|backend\\backend.csproj|solutionrelative:backend\\models\\entities\\todo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8732BC9-E671-4C28-B73C-A8E3119403EF}|backend\\backend.csproj|d:\\intern\\practice\\dotnet\\backend\\backend\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8732BC9-E671-4C28-B73C-A8E3119403EF}|backend\\backend.csproj|solutionrelative:backend\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8732BC9-E671-4C28-B73C-A8E3119403EF}|backend\\backend.csproj|d:\\intern\\practice\\dotnet\\backend\\backend\\controllers\\todolistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8732BC9-E671-4C28-B73C-A8E3119403EF}|backend\\backend.csproj|solutionrelative:backend\\controllers\\todolistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\intern\\practice\\dotnet\\backend\\backend\\Migrations\\20250724135223_CreateUserAndTodoTables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\Migrations\\20250724135223_CreateUserAndTodoTables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8732BC9-E671-4C28-B73C-A8E3119403EF}|backend\\backend.csproj|d:\\intern\\practice\\dotnet\\backend\\backend\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8732BC9-E671-4C28-B73C-A8E3119403EF}|backend\\backend.csproj|solutionrelative:backend\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8732BC9-E671-4C28-B73C-A8E3119403EF}|backend\\backend.csproj|d:\\intern\\practice\\dotnet\\backend\\backend\\models\\userresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8732BC9-E671-4C28-B73C-A8E3119403EF}|backend\\backend.csproj|solutionrelative:backend\\models\\userresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8732BC9-E671-4C28-B73C-A8E3119403EF}|backend\\backend.csproj|d:\\intern\\practice\\dotnet\\backend\\backend\\models\\updatelistdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8732BC9-E671-4C28-B73C-A8E3119403EF}|backend\\backend.csproj|solutionrelative:backend\\models\\updatelistdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8732BC9-E671-4C28-B73C-A8E3119403EF}|backend\\backend.csproj|d:\\intern\\practice\\dotnet\\backend\\backend\\models\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8732BC9-E671-4C28-B73C-A8E3119403EF}|backend\\backend.csproj|solutionrelative:backend\\models\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8732BC9-E671-4C28-B73C-A8E3119403EF}|backend\\backend.csproj|d:\\intern\\practice\\dotnet\\backend\\backend\\models\\addtolistdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8732BC9-E671-4C28-B73C-A8E3119403EF}|backend\\backend.csproj|solutionrelative:backend\\models\\addtolistdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\intern\\practice\\dotnet\\backend\\backend\\Migrations\\20250724134643_create table.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\Migrations\\20250724134643_create table.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\intern\\practice\\dotnet\\backend\\backend\\Migrations\\20250724090551_login signup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\Migrations\\20250724090551_login signup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8732BC9-E671-4C28-B73C-A8E3119403EF}|backend\\backend.csproj|d:\\intern\\practice\\dotnet\\backend\\backend\\migrations\\20250724135534_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8732BC9-E671-4C28-B73C-A8E3119403EF}|backend\\backend.csproj|solutionrelative:backend\\migrations\\20250724135534_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "20250724135223_CreateUserAndTodoTables.cs",
+              "DocumentMoniker": "D:\\intern\\practice\\dotnet\\backend\\backend\\Migrations\\20250724135223_CreateUserAndTodoTables.cs",
+              "RelativeDocumentMoniker": "backend\\Migrations\\20250724135223_CreateUserAndTodoTables.cs",
+              "ToolTip": "D:\\intern\\practice\\dotnet\\backend\\backend\\Migrations\\20250724135223_CreateUserAndTodoTables.cs",
+              "RelativeToolTip": "backend\\Migrations\\20250724135223_CreateUserAndTodoTables.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-24T13:52:23.536Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "D:\\intern\\practice\\dotnet\\backend\\backend\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "backend\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "D:\\intern\\practice\\dotnet\\backend\\backend\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "backend\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-24T08:53:37.306Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "LoginDto.cs",
+              "DocumentMoniker": "D:\\intern\\practice\\dotnet\\backend\\backend\\Models\\LoginDto.cs",
+              "RelativeDocumentMoniker": "backend\\Models\\LoginDto.cs",
+              "ToolTip": "D:\\intern\\practice\\dotnet\\backend\\backend\\Models\\LoginDto.cs",
+              "RelativeToolTip": "backend\\Models\\LoginDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-24T08:53:10.743Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RegisterDto.cs",
+              "DocumentMoniker": "D:\\intern\\practice\\dotnet\\backend\\backend\\Models\\RegisterDto.cs",
+              "RelativeDocumentMoniker": "backend\\Models\\RegisterDto.cs",
+              "ToolTip": "D:\\intern\\practice\\dotnet\\backend\\backend\\Models\\RegisterDto.cs",
+              "RelativeToolTip": "backend\\Models\\RegisterDto.cs",
+              "ViewState": "AgIAAAIAAAAAMjMzMzMbwAsAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-24T08:51:35.205Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AddToListDto.cs",
+              "DocumentMoniker": "D:\\intern\\practice\\dotnet\\backend\\backend\\Models\\AddToListDto.cs",
+              "RelativeDocumentMoniker": "backend\\Models\\AddToListDto.cs",
+              "ToolTip": "D:\\intern\\practice\\dotnet\\backend\\backend\\Models\\AddToListDto.cs",
+              "RelativeToolTip": "backend\\Models\\AddToListDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-23T10:39:23.546Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "UpdateListDto.cs",
+              "DocumentMoniker": "D:\\intern\\practice\\dotnet\\backend\\backend\\Models\\UpdateListDto.cs",
+              "RelativeDocumentMoniker": "backend\\Models\\UpdateListDto.cs",
+              "ToolTip": "D:\\intern\\practice\\dotnet\\backend\\backend\\Models\\UpdateListDto.cs",
+              "RelativeToolTip": "backend\\Models\\UpdateListDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-23T10:38:32.943Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "TodoListController.cs",
+              "DocumentMoniker": "D:\\intern\\practice\\dotnet\\backend\\backend\\Controllers\\TodoListController.cs",
+              "RelativeDocumentMoniker": "backend\\Controllers\\TodoListController.cs",
+              "ToolTip": "D:\\intern\\practice\\dotnet\\backend\\backend\\Controllers\\TodoListController.cs",
+              "RelativeToolTip": "backend\\Controllers\\TodoListController.cs",
+              "ViewState": "AgIAABkAAADgLDMzM3MlwCoAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-23T07:03:16.796Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Todo.cs",
+              "DocumentMoniker": "D:\\intern\\practice\\dotnet\\backend\\backend\\Models\\Entities\\Todo.cs",
+              "RelativeDocumentMoniker": "backend\\Models\\Entities\\Todo.cs",
+              "ToolTip": "D:\\intern\\practice\\dotnet\\backend\\backend\\Models\\Entities\\Todo.cs",
+              "RelativeToolTip": "backend\\Models\\Entities\\Todo.cs",
+              "ViewState": "AgIAAAkAAADwzMzMzGw5wBsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-24T08:53:23.019Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\intern\\practice\\dotnet\\backend\\backend\\Program.cs",
+              "RelativeDocumentMoniker": "backend\\Program.cs",
+              "ToolTip": "D:\\intern\\practice\\dotnet\\backend\\backend\\Program.cs",
+              "RelativeToolTip": "backend\\Program.cs",
+              "ViewState": "AgIAAAgAAAAALTMzMzMbwDcAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-23T06:55:29.27Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "User.cs",
+              "DocumentMoniker": "D:\\intern\\practice\\dotnet\\backend\\backend\\Models\\Entities\\User.cs",
+              "RelativeDocumentMoniker": "backend\\Models\\Entities\\User.cs",
+              "ToolTip": "D:\\intern\\practice\\dotnet\\backend\\backend\\Models\\Entities\\User.cs",
+              "RelativeToolTip": "backend\\Models\\Entities\\User.cs",
+              "ViewState": "AgIAAAUAAAAQy8zMzMwvwB4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-24T08:51:08.394Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "20250724135534_InitialCreate.cs",
+              "DocumentMoniker": "D:\\intern\\practice\\dotnet\\backend\\backend\\Migrations\\20250724135534_InitialCreate.cs",
+              "RelativeDocumentMoniker": "backend\\Migrations\\20250724135534_InitialCreate.cs",
+              "ToolTip": "D:\\intern\\practice\\dotnet\\backend\\backend\\Migrations\\20250724135534_InitialCreate.cs",
+              "RelativeToolTip": "backend\\Migrations\\20250724135534_InitialCreate.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-24T13:55:34.608Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "20250724134643_create table.cs",
+              "DocumentMoniker": "D:\\intern\\practice\\dotnet\\backend\\backend\\Migrations\\20250724134643_create table.cs",
+              "RelativeDocumentMoniker": "backend\\Migrations\\20250724134643_create table.cs",
+              "ToolTip": "D:\\intern\\practice\\dotnet\\backend\\backend\\Migrations\\20250724134643_create table.cs",
+              "RelativeToolTip": "backend\\Migrations\\20250724134643_create table.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-24T13:46:43.763Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UserResponseDto.cs",
+              "DocumentMoniker": "D:\\intern\\practice\\dotnet\\backend\\backend\\Models\\UserResponseDto.cs",
+              "RelativeDocumentMoniker": "backend\\Models\\UserResponseDto.cs",
+              "ToolTip": "D:\\intern\\practice\\dotnet\\backend\\backend\\Models\\UserResponseDto.cs",
+              "RelativeToolTip": "backend\\Models\\UserResponseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-24T08:53:18.585Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\intern\\practice\\dotnet\\backend\\backend\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "backend\\Controllers\\AuthController.cs",
+              "ToolTip": "D:\\intern\\practice\\dotnet\\backend\\backend\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "backend\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAawBsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-24T08:53:46.87Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "20250724090551_login signup.cs",
+              "DocumentMoniker": "D:\\intern\\practice\\dotnet\\backend\\backend\\Migrations\\20250724090551_login signup.cs",
+              "RelativeDocumentMoniker": "backend\\Migrations\\20250724090551_login signup.cs",
+              "ToolTip": "D:\\intern\\practice\\dotnet\\backend\\backend\\Migrations\\20250724090551_login signup.cs",
+              "RelativeToolTip": "backend\\Migrations\\20250724090551_login signup.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-24T09:05:52.736Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
